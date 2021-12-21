@@ -45,12 +45,19 @@ return require('packer').startup(function()
 		config = function() require'nvim-tree'.setup {} end
 	}
 
+	-- Bufferline
+
+	use {
+		'akinsho/bufferline.nvim',
+		config = [[ require 'modules.bufferline' ]]
+	}
+
 	-- Keybind helper
 
 	use 'LionC/nest.nvim'
 
 	-- Tracker
-	--
+	
 	use {
 		'SmiteshP/nvim-gps',
 		requires = 'nvim-treesitter/nvim-treesitter',
