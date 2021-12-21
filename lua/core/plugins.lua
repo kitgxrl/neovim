@@ -101,7 +101,7 @@ return require('packer').startup(function()
         config = [[ require('nvim-autopairs').setup({ map_cr = true, check_ts = true }) ]],
     }
 
-    -- Git Diff
+    -- Git
 
     use {
         'lewis6991/gitsigns.nvim',
@@ -110,6 +110,8 @@ return require('packer').startup(function()
             require('gitsigns').setup()
         end,
     }
+
+    use 'tpope/vim-fugitive'
 
     -- Telescope ~ Fuzzy Finder
 
@@ -169,8 +171,8 @@ return require('packer').startup(function()
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             require('indent_blankline').setup {
-                buftype_exclude = { 'terminal' },
-                filetype_exclude = { 'packer' },
+                buftype_exclude = { 'terminal', 'help' },
+                filetype_exclude = { 'packer', 'fugitive' },
                 space_char_blankline = ' ',
             }
         end,

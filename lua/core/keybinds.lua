@@ -18,6 +18,10 @@ nest.applyKeymaps {
                 },
             },
 
+            { mode = 't', {
+                { '<ESC>', '<C-\\><C-n>' },
+            } },
+
             -- Telescope
 
             {
@@ -46,6 +50,7 @@ nest.applyKeymaps {
             },
         },
     },
+
     -- Window movement
 
     {
@@ -58,7 +63,25 @@ nest.applyKeymaps {
         },
     },
 
-    { mode = 't', {
-        { '<ESC>', '<C-\\><C-n>' },
-    } },
+    -- Trouble management
+
+    {
+        '<C-t>',
+        {
+            { 'q', '<cmd>Trouble quickfix<cr>' }, -- Quickfix list
+            { 'x', '<cmd>Trouble workspace_diagnostics<cr>' }, -- Errors, warnings, etc
+            { 'd', '<cmd>Trouble lsp_definitions<cr>' }, -- Jump to definition
+            { 't', '<cmd>TodoTrouble<cr>' }, -- List TODOs/FIXMEs/NOTEs/HACKs/etc
+        },
+    },
+
+    -- Git
+    {
+        'g',
+        {
+            { 'g', '<cmd>execute 15 .. "Git"<cr>' },
+            { 'c', '<cmd>Git commit<cr>' },
+            { 'p', '<cmd>Git push<cr>' },
+        },
+    },
 }

@@ -4,10 +4,13 @@ function user_host()
     return vim.fn.getenv 'USER' .. '@' .. vim.fn.hostname()
 end
 
+vim.cmd [[ hi StatusLine guibg=bg guifg=bg ]]
+vim.cmd [[ hi StatusLineNC guibg=bg guifg=bg ]]
+
 require('lualine').setup {
     options = {
         theme = 'tokyonight',
-        disabled_filetypes = { 'NvimTree' },
+        disabled_filetypes = { 'NvimTree', 'Trouble', 'fugitive' },
         component_separators = '~',
         section_separators = '',
         icons_enabled = false,
