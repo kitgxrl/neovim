@@ -1,193 +1,208 @@
 require 'core.packer_init'
 
 return require('packer').startup(function()
-	-- Let packer manage itself
+    -- Let packer manage itself
 
-	use 'wbthomason/packer.nvim'
+    use 'wbthomason/packer.nvim'
 
-	-- Theme
+    -- Theme
 
-	use {
-		'folke/tokyonight.nvim',
-		config = function()
-			vim.cmd [[ colo tokyonight ]]
-		end,
-	}
+    use {
+        'folke/tokyonight.nvim',
+        config = function()
+            vim.cmd [[ colo tokyonight ]]
+        end,
+    }
 
-	-- Better Syntax Highlighting
+    -- Better Syntax Highlighting
 
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate',
-		config = [[ require 'modules.treesitter' ]]
-	}
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = [[ require 'modules.treesitter' ]],
+    }
 
-	-- Statusline
+    -- Statusline
 
-	use {
-		'nvim-lualine/lualine.nvim',
-		config = [[ require 'modules.statusline' ]]
-	}
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = [[ require 'modules.statusline' ]],
+    }
 
-	-- NVimTree
+    -- NVimTree
 
-	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = 'kyazdani42/nvim-web-devicons',
-		setup = function()
-			vim.g.nvim_tree_show_icons = {
-				git = 1,
-				folders = 0,
-				files = 0,
-				folder_arrows = 0,
-			}
-		end,
-		config = function() require'nvim-tree'.setup {} end
-	}
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        setup = function()
+            vim.g.nvim_tree_show_icons = {
+                git = 1,
+                folders = 0,
+                files = 0,
+                folder_arrows = 0,
+            }
+        end,
+        config = function()
+            require('nvim-tree').setup {}
+        end,
+    }
 
-	-- Bufferline
+    -- Bufferline
 
-	use {
-		'akinsho/bufferline.nvim',
-		config = [[ require 'modules.bufferline' ]]
-	}
+    use {
+        'akinsho/bufferline.nvim',
+        config = [[ require 'modules.bufferline' ]],
+    }
 
-	-- Keybind helper
+    -- Keybind helper
 
-	use 'LionC/nest.nvim'
+    use 'LionC/nest.nvim'
 
-	-- Tracker
-	
-	use {
-		'SmiteshP/nvim-gps',
-		requires = 'nvim-treesitter/nvim-treesitter',
-		config = function()
-			require('nvim-gps').setup()
-		end
-	}
+    -- Tracker
 
-	-- LSP
+    use {
+        'SmiteshP/nvim-gps',
+        requires = 'nvim-treesitter/nvim-treesitter',
+        config = function()
+            require('nvim-gps').setup()
+        end,
+    }
 
-	use {
-		'neovim/nvim-lspconfig',
-		config = [[ require 'modules.lsp' ]]
-	}
+    -- LSP
 
-	-- Auto Completion
+    use {
+        'neovim/nvim-lspconfig',
+        config = [[ require 'modules.lsp' ]],
+    }
 
-	use {
-		'hrsh7th/nvim-cmp',
-		requires = { 
-			'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/cmp-buffer',
-			'hrsh7th/cmp-path',
-			'hrsh7th/cmp-cmdline',
-			'L3MON4D3/LuaSnip',
-			'saadparwaiz1/cmp_luasnip'
-		},
-		config = [[ require 'modules.cmp' ]]
-	}
+    -- Auto Completion
 
-	-- Formatter
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+        },
+        config = [[ require 'modules.cmp' ]],
+    }
 
-	use 'sbdchd/neoformat'
+    -- Formatter
 
-	-- Auto pairs
+    use 'sbdchd/neoformat'
 
-	use {
-		'windwp/nvim-autopairs',
-		config = [[ require('nvim-autopairs').setup({ map_cr = true, check_ts = true }) ]]
-	}
+    -- Auto pairs
 
-	-- Git Diff
+    use {
+        'windwp/nvim-autopairs',
+        config = [[ require('nvim-autopairs').setup({ map_cr = true, check_ts = true }) ]],
+    }
 
-	use {
-		'lewis6991/gitsigns.nvim',
-		requires = 'nvim-lua/plenary.nvim',
-		config = function()
-			require('gitsigns').setup()
-		end
-	}
+    -- Git Diff
 
-	-- Telescope ~ Fuzzy Finder
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end,
+    }
 
-	use { 'nvim-telescope/telescope.nvim',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
+    -- Telescope ~ Fuzzy Finder
 
-	-- Better vim movement
+    use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' } } }
 
-	use 'ggandor/lightspeed.nvim'
+    -- Better vim movement
 
-	use {
-		'blackCauldron7/surround.nvim',
-		config = function()
-			require('surround').setup {mappings_style = 'surround'}
-		end
-	}
+    use 'ggandor/lightspeed.nvim'
 
-	use 'andymass/vim-matchup'
+    use {
+        'blackCauldron7/surround.nvim',
+        config = function()
+            require('surround').setup { mappings_style = 'surround' }
+        end,
+    }
 
-	-- Trouble
+    use 'andymass/vim-matchup'
 
-	use {
-		'folke/trouble.nvim',
-		requires = 'kyazdani42/nvim-web-devicons',
-		config = function()
-			require('trouble').setup {}
-		end
-	}
+    -- Trouble
 
-	-- Zen editing
+    use {
+        'folke/trouble.nvim',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function()
+            require('trouble').setup {}
+        end,
+    }
 
-	use {
-		'folke/zen-mode.nvim',
-		requires = 'folke/twilight.nvim',
-		config = function()
-			require('twilight').setup {}
-			require('zen-mode').setup {
-				window = {
-					options = {
-						number = false,
-						relativenumber = false
-					}
-				}	
-			}
-		end
-	}
+    -- Zen editing
 
-	-- Color helper
-	use 'rktjmp/lush.nvim'
+    use {
+        'folke/zen-mode.nvim',
+        requires = 'folke/twilight.nvim',
+        config = function()
+            require('twilight').setup {}
+            require('zen-mode').setup {
+                window = {
+                    options = {
+                        number = false,
+                        relativenumber = false,
+                    },
+                },
+            }
+        end,
+    }
 
-	-- Misc visuals
+    -- Color helper
+    use 'rktjmp/lush.nvim'
 
-	use {
-		'norcalli/nvim-colorizer.lua',
-		config = [[ require('colorizer').setup() ]]
-	}
-	use {
-		'lukas-reineke/indent-blankline.nvim',
-		config = function()
-			require('indent_blankline').setup {
-				buftype_exclude = {'terminal'}
-			}
-		end
-	}
+    -- Misc visuals
 
-	use {
-		'folke/todo-comments.nvim',
-		config = function()
-			require('todo-comments').setup {}
-		end
-	}
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = [[ require('colorizer').setup() ]],
+    }
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require('indent_blankline').setup {
+                buftype_exclude = { 'terminal' },
+                filetype_exclude = { 'packer' },
+                space_char_blankline = ' ',
+            }
+        end,
+    }
 
-	-- Lang support
-	
-	use {
-		'alaviss/nim.nvim',
-		config = function()
-			-- Bc this stupid ass plugin enables folds by default...
-			vim.o.foldenable = false
-		end
-	}
+    use {
+        'folke/todo-comments.nvim',
+        config = function()
+            require('todo-comments').setup {}
+        end,
+    }
+
+    -- Lang support
+
+    use {
+        'alaviss/nim.nvim',
+        config = function()
+            -- Bc this stupid ass plugin enables folds by default...
+            vim.o.foldenable = false
+        end,
+    }
+
+    -- Stabilizes window
+    use {
+        'luukvbaal/stabilize.nvim',
+        config = function()
+            require('stabilize').setup()
+        end,
+    }
+
+    -- Auto formatting
+    use {
+        'sbdchd/neoformat',
+    }
 end)

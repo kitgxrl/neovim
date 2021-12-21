@@ -1,23 +1,24 @@
 local g = vim.g
 local o = vim.o
 
-vim.o.termguicolors = true
+o.termguicolors = true
 
 -- Tabs/Spaces
 
-o.tabstop     = 4
+o.tabstop = 4
 o.softtabstop = 4
-o.shiftwidth  = 4
+o.shiftwidth = 4
+o.expandtab = true
 
 -- Number Lines
 
-o.number         = true
+o.number = true
 o.relativenumber = true
 
 -- Misc visual
 
 o.cursorline = true
-o.showmode   = false
+o.showmode = false
 
 o.scrolloff = 2
 
@@ -33,5 +34,19 @@ o.mouse = 'a'
 -- Term
 
 vim.cmd [[
-	au TermOpen * setlocal nonumber norelativenumber foldcolumn=1 nocursorline
+    au TermOpen * setlocal nonumber norelativenumber foldcolumn=1 nocursorline
 ]]
+
+-- Autoformat
+
+vim.cmd [[
+    augroup fmt
+        autocmd!
+        autocmd BufWritePre * undojoin | Neoformat
+    augroup END
+]]
+
+-- Misc
+
+o.list = true
+vim.opt.listchars:append 'space:⋅'
